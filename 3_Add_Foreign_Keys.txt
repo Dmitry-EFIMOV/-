@@ -1,0 +1,54 @@
+use Hospital;
+
+alter table affiliated_with
+add foreign key(physician) references physician(employeeid);
+alter table affiliated_with
+add foreign key(department) references department(departmentid);
+
+alter table department
+add foreign key(head) references physician(employeeid);
+
+alter table prescribes
+add foreign key(physician) references physician(employeeid);
+alter table prescribes
+add foreign key(patient) references patient(ssn);
+alter table prescribes
+add foreign key(medication) references medication(code);
+alter table prescribes
+add foreign key(appointment) references appointment(appointmentid);
+
+alter table trained_in
+add foreign key(physician) references physician(employeeid);
+alter table trained_in
+add foreign key(treatment) references _procedure(code);
+
+alter table patient
+add foreign key(pcp) references physician(employeeid);
+
+alter table room
+add foreign key(blockfloor, blockcode) references _block(blockfloor, blockcode);
+
+alter table undergoes 
+add foreign key(patient) references patient(ssn);
+alter table undergoes
+add foreign key(_procedure) references _procedure(code);
+alter table undergoes 
+add foreign key(stay) references stay(stayid);
+alter table undergoes
+add foreign key(physician) references physician(employeeid);
+alter table undergoes
+add foreign key(assistingnurse) references nurse(employeeid);
+
+alter table appointment
+add foreign key(patient) references patient(ssn);
+alter table appointment
+add foreign key(prepnurse) references nurse(employeeid);
+alter table appointment
+add foreign key(physician) references physician(employeeid);
+
+alter table stay
+add foreign key(patient) references patient(ssn);
+alter table stay
+add foreign key(room) references room(roomnumber);
+
+alter table on_call

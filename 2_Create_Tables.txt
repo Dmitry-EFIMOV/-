@@ -1,0 +1,105 @@
+use Hospital;
+
+create table physician(
+employeeid int primary key,
+_name varchar(60),
+position varchar(60),
+ssn int)
+
+create table department(
+departmentid int primary key,
+_name varchar(60),
+head int)
+
+create table affiliated_with(
+physician int,
+department int,
+primaryaffiliation bit,
+primary key(physician,department))
+
+create table _procedure(
+code int primary key,
+_name varchar(60),
+cost real)
+
+create table trained_in(
+physician int,
+treatment int,
+certificationdate date,
+certificationexpires date,
+primary key(physician, treatment))
+
+create table patient(
+ssn int primary key,
+_name varchar(60),
+_address varchar(60),
+phone varchar(60),
+insuranceid int,
+pcp int)
+
+create table nurse(
+employeeid int primary key,
+_name varchar(60),
+position varchar(60),
+registered bit,
+ssn int)
+
+create table appointment(
+appointmentid int primary key,
+patient int,
+prepnurse int,
+physician int,
+start_dt_time datetime,
+end_dt_time datetime,
+examinationroom varchar(60))
+
+create table medication(
+code int primary key,
+_name varchar(60),
+brand varchar(60),
+_description varchar(60))
+
+create table prescribes(
+physician int,
+patient int,
+medication int,
+_date datetime,
+appointment int,
+dose varchar(60),
+primary key(physician, patient, medication, _date))
+
+create table _block(
+blockfloor int,
+blockcode int,
+primary key(blockfloor,blockcode))
+
+create table room(
+roomnumber int primary key,
+roomtype varchar(60),
+blockfloor int,
+blockcode int,
+unavaiable bit)
+
+create table on_call(
+nurse int,
+blockfloor int,
+blockcode int,
+oncallstart datetime,
+oncallend datetime,
+primary key(nurse,blockfloor,blockcode,oncallstart,oncallend))
+
+create table stay(
+stayid int primary key,
+patient int,
+room int,
+start_time datetime,
+end_time datetime)
+
+create table undergoes(
+patient int,
+_procedure int,
+stay int,
+_date datetime,
+physician int,
+assistingnurse int,
+primary key(patient,_procedure,stay,_date))
