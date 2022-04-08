@@ -1,1 +1,1 @@
-create database Hospital;
+Create database Session_xx       
