@@ -1,1 +1,1 @@
-Create database Session_xx       
+CREATE DATABASE ≈фимов_ƒмитрий
