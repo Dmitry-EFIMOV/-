@@ -1,0 +1,3 @@
+SELECT NAME_TEACHER AS 'Cписок профессоров'
+FROM TEACHER
+WHERE DOLGNOST = 'профессор'
